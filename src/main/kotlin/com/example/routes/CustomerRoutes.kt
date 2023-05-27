@@ -14,10 +14,10 @@ fun Route.customerRouting() {
 
         get {
 
-            if(customerStorage.isNotEmpty()){
+            if (customerStorage.isNotEmpty()) {
                 call.respond(customerStorage)
-            }else{
-                call.respondText ("No customer found", status = HttpStatusCode.OK)
+            } else {
+                call.respondText("No customer found", status = HttpStatusCode.OK)
             }
         }
         get("{id?}") {
@@ -43,7 +43,7 @@ fun Route.customerRouting() {
 
         delete("{id?}") {
 
-            val id = call.parameters["id"]?:return@delete call.respond(HttpStatusCode.BadRequest)
+            val id = call.parameters["id"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
             if (customerStorage.removeIf { it.id == id }) {
                 call.respondText("Customer removed correctly", status = HttpStatusCode.Accepted)
             } else {

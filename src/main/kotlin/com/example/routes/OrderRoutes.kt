@@ -30,11 +30,11 @@ fun Route.getOrderRoute() {
     }
 }
 
-fun Route.totalizeOrderRoute(){
+fun Route.totalizeOrderRoute() {
 
-    get("/order/{id}/total"){
+    get("/order/{id}/total") {
 
-        val id = call.parameters["id"]?:return@get call.respondText("Bad request", status = HttpStatusCode.BadRequest)
+        val id = call.parameters["id"] ?: return@get call.respondText("Bad request", status = HttpStatusCode.BadRequest)
 
         val order = orderStorage.find { it.number == id } ?: return@get call.respondText(
             "Order not found",
